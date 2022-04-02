@@ -13,6 +13,9 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
 
+/**
+ * This class is responsible to manage life cycle of tomcat server
+ **/
 public class SimpleWebApp {
 	public void start() {
 		Tomcat tomcat = setupTomcat();
