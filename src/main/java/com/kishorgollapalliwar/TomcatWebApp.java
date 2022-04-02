@@ -18,7 +18,8 @@ import org.apache.catalina.startup.Tomcat;
  **/
 public class SimpleWebApp {
 	public void start() {
-		Tomcat tomcat = setupTomcat();
+		Tomcat tomcat   = setupTomcat();
+		Context context = setupContext(tomcat);
 	}
 
     private Tomcat setupTomcat() {
@@ -27,5 +28,11 @@ public class SimpleWebApp {
         tomcat.setPort(8080);
 
         return tomcat;
+    }
+
+    private Context setupContext(Tomcat tomcat) {
+        String contextPath = "/";
+        String docBase     = new File(".").getAbsolutePath();
+        return tomcat.addContext(contextPath, docBase);
     }
 }
