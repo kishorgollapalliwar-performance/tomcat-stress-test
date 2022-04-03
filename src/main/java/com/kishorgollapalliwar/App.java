@@ -1,9 +1,8 @@
 package com.kishorgollapalliwar;
 
 /**
- * Hello world!
- *
- */
+ * Starter class
+ **/
 public class App {
     public static void main( String[] args ) {
         TomcatWebApp simpleWebApp = new TomcatWebApp();
