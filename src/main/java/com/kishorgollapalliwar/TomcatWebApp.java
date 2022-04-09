@@ -22,6 +22,7 @@ public class TomcatWebApp {
         Context context = setupContext(tomcat);
 
 		addTimeServlet(tomcat, context);
+		addRandomFactorialServlet(tomcat, context);
 
         try {
             tomcat.start();
@@ -58,5 +59,27 @@ public class TomcatWebApp {
         tomcat.addServlet("/", "TimeServlet", timeServlet);
         context.addServletMappingDecoded("/server-time", "TimeServlet");
         context.addServletMappingDecoded("/", "TimeServlet");
+    }
+
+    private void addRandomFactorialServlet(final Tomcat  tomcat, final Context context) {
+        HttpServlet randomFactorialServlet = new HttpServlet() {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                Integer input = (int) (Math.random() * 100);
+                Integer fact  = SimpleWebApp.factorial(input);
+                System.out.println("Factorial of = " + input + " is " + fact);
+                resp.getWriter().println(fact);
+            }
+        };
+
+        tomcat.addServlet("/", "RandomFactorialServlet", randomFactorialServlet);
+        context.addServletMappingDecoded("/random-factorial", "RandomFactorialServlet");
+    }
+
+    private static Integer factorial (Integer input) {
+        System.out.println("Calculating factorial of " + input);
+        return input == 1 ? 1 : input * factorial(input - 1);
     }
 }
