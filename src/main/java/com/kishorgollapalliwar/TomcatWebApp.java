@@ -68,7 +68,7 @@ public class TomcatWebApp {
             @Override
             protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
                 Integer input = (int) (Math.random() * 100);
-                Integer fact  = SimpleWebApp.factorial(input);
+                Integer fact  = TomcatWebApp.factorial(input);
                 System.out.println("Factorial of = " + input + " is " + fact);
                 resp.getWriter().println(fact);
             }
